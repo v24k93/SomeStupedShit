@@ -1,0 +1,4 @@
+directory 'application/cache' permitions
+
+Ubuntu:
+	'sudo apt-get intall php5-mysql'
