@@ -1,0 +1,19 @@
+ - Progressing
+	* Module System 					100%
+	* Templated Modify 					80%
+	* Autoloaded Classes					60%	(Will be added more features in progress)
+	* Ajax Realms Status Module (Cached)			100%
+	* Online Players Module					80%	(Not cached)
+	* News Module						20%	(Need queries and view)
+
+ - Features
+	* User Tools (Register, Login, UCP, Password Recovery)	0%
+	* Basic Armory System					0%
+	* How to Connect					0%
+	* Terms of Service					0%
+	* Item Tooltip						0%
+	* Banned (Accounts, Characters,IPs)			0%
+	* Top PVP Fighters					0%
+	* Top Arena Teams					0%
+	* Vote							0%
+	* Donate						0%
