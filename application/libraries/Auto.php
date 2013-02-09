@@ -2,13 +2,23 @@
 
 class Auto {
     
-    public $realms_info = NULL;
+    public $realms_info = NULL, $title = NULL;
     
     public function __construct() 
     {	
         $this->set_realms_info();
     }
     
+    public function setTitle($str = '')
+    {
+        if($str == '')
+            return;
+        
+        $this->title = $str;
+        echo $this->title;
+    }
+
+
     private function set_realms_info()
     {
         $CI =& get_instance();

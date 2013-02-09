@@ -25,6 +25,7 @@ class Status extends CI_Controller {
             
             $this->load->model('status_model', 'status');
             $data['characters'] = $this->status_model->get_online_players($realm_info);
+            $this->title = 'Status';
             return $this->parser->parse('status', $data, true, 'status');
 	}
 }

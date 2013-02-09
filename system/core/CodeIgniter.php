@@ -323,28 +323,27 @@
  */
         $content = ''; // Store the main content
         
-        if ( ! class_exists('AcoCMS'))
+        if ( ! class_exists('User'))
 	{
-            require APPPATH.'libraries/aco_cms.php';
+            require APPPATH.'libraries/user.php';
         }
         
         session_start();
         
-        if( ! isset($_SESSION['AcoCMS']))
+        if( ! isset($_SESSION['user']))
         {
-            $CI->AcoCMS = new AcoCMS();
+            $CI->user = new User();
             
-            $_SESSION['AcoCMS'] = $CI->AcoCMS;
+            $_SESSION['user'] = $CI->user;
         }
         else
         {
-            $CI->AcoCMS = $_SESSION['AcoCMS'];
+            $CI->user = $_SESSION['user'];
         }
-        
         require APPPATH.'config/definitions.php';
         
         $CI->Definitions = new Definitions();
-
+        $CI->title = '';
         //
 	// Is there a "remap" function? If so, we call it instead
 	if (method_exists($CI, '_remap'))
@@ -386,10 +385,11 @@
 		$content = call_user_func_array(array(&$CI, $method), array_slice($URI->rsegments, 2));
 	}
         
-        
         if(strtolower($class) != 'ajax')
         {
             $data['content'] = $content;
+            $data['title'] = $CI->title;
+            $data['content'] = $CI->parser->parse('thor/template/box', $data, true);
             $data['head_content'] = $CI->Definitions->head_content;
             $data['realm_status'] = $CI->Definitions->realm_status;
             $data['base_url'] = base_url();

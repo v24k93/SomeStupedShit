@@ -4,7 +4,6 @@ class News extends CI_Controller {
 
 	public function index()
 	{
-                $this->title = 'News';
 		$this->load->model('news_module', 'news');
 		return $this->parser->parse('news', array(), true, 'news');
 	}

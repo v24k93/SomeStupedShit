@@ -1,6 +1,6 @@
 <?php
 
-class AcoCMS {
+class User {
     public $is_logged = false, $is_admin = false, $id = '', $username = '';
     
     public function check_number($str)

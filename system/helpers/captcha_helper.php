@@ -60,22 +60,22 @@ if ( ! function_exists('create_captcha'))
 
 		if ($img_path == '' OR $img_url == '')
 		{
-			return FALSE;
+			return '1';
 		}
 
 		if ( ! @is_dir($img_path))
 		{
-			return FALSE;
+			return '2';
 		}
 
 		if ( ! is_writable($img_path))
 		{
-			return FALSE;
+			return '3';
 		}
 
 		if ( ! extension_loaded('gd'))
 		{
-			return FALSE;
+			return '4';
 		}
 
 		// -----------------------------------
