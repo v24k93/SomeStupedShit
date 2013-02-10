@@ -49,6 +49,7 @@ $lang['donate_points'] = "VIP Points";
 $lang['your_current'] = "Current";
 $lang['logout'] = "Logout";
 $lang['last_login'] = "Last login";
+$lang['last'] = "Last";
 $lang['not_banned'] = "Not Banned";
 $lang['banned'] = "Banned";
 $lang['expansion'] = "Expansion";

@@ -1,11 +1,11 @@
  - Progressing
 	* Module System 					100%
-	* Templates Modify 					85%
+	* Templates Modify 					90%
 	* Autoloaded Classes					60%	(Will be added more features in progress)
 	* Ajax Realms Status Module (Cached)			100%
 	* Online Players Module					80%	(Not cached)
 	* News Module						20%	(Need queries and view)
-        * User Tools (Register, Login, UCP, Password Recovery)	20%     (Register done)
+        * User Tools (Register, Login, UCP, Password Recovery)	40%     (Register & Login done)
 
  - Features
 	* Basic Armory System					0%

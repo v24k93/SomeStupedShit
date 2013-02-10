@@ -1,6 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Register extends CI_Controller {
+    
+        public function __construct() 
+	{
+            parent::__construct();
+            if($this->datauser->is_logged)
+                redirect('profile');
+	}
 
 	public function index()
 	{
@@ -68,8 +75,17 @@ class Register extends CI_Controller {
                 {
                     $data_user = $this->register_model->get_session_username($username);
                     
-                    $this->user->init($data_user['id']);
-                    $_SESSION['user'] = $this->user;
+                    $newdata = array(
+                        'is_logged' =>  TRUE,
+                        'username'  =>  $username,
+                        'id'        =>  $data_user['id'],
+                        'email'     =>  $email,
+                        'nickname'  =>  $username,
+                        'expansion' =>  $this->config->item('expansion'),
+                        'join_date' =>  date('Y-m-d H:i:s')
+                    );
+                    
+                    $this->session->set_userdata(array('data_user' => $newdata));
                     
                     $this->register_model->add_addition_information($data_user['id'], $username, $this->input->post('register_security_question'), $this->input->post('register_security_answer'));
                     

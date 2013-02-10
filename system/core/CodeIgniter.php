@@ -322,24 +322,7 @@
  * ------------------------------------------------------
  */
         $content = ''; // Store the main content
-        
-        if ( ! class_exists('User'))
-	{
-            require APPPATH.'libraries/user.php';
-        }
-        
-        session_start();
-        
-        if( ! isset($_SESSION['user']))
-        {
-            $CI->user = new User();
-            
-            $_SESSION['user'] = $CI->user;
-        }
-        else
-        {
-            $CI->user = $_SESSION['user'];
-        }
+      
         require APPPATH.'config/definitions.php';
         
         $CI->Definitions = new Definitions();
@@ -393,6 +376,10 @@
             $data['head_content'] = $CI->Definitions->head_content;
             $data['realm_status'] = $CI->Definitions->realm_status;
             $data['base_url'] = base_url();
+            $data['login_status'] = $CI->session->flashdata('login_status');
+            $data['membership_login'] = ($CI->datauser->is_logged) ? array() : array(array());
+            $data['membership'] = ($CI->datauser->is_logged) ? array((array)$CI->datauser) : array();
+            $data['user_ip'] = $_SERVER['REMOTE_ADDR'];
             require ('application/language/english/main_lang.php');
             foreach ($lang as $key => $val)
                 $data['lang_'.$key] = $val;

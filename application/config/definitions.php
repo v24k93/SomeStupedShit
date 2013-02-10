@@ -10,7 +10,7 @@ $config['head_content'] = '
     <script type="text/javascript" src="'.base_url('content/js/main.js').'"></script>
     <script type="text/javascript" src="'.base_url('content/js/wow.js').'"></script>
     <script type="text/javascript" src="'.base_url('content/js/jquery.placeholder.min.js').'"></script>
-    <script type="text/javascript" src="http://cdn.openwow.com/api/tooltip.js"></script>';
+    <script type="text/javascript" src="'.base_url('content/js/openwow.js').'"></script>';
 
 $config['realm_status'] = '
     <span id="realmstatus_info"><center><img src="'.base_url('content/img/loader.gif').'" /></center></span>

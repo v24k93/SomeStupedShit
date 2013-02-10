@@ -7,7 +7,6 @@ class Status extends CI_Controller {
             if( ! is_numeric($realm) || $realm <= 0 || ! is_numeric($page) || $page < 0 || ! is_numeric($limit) || $limit <= 0)
                 redirect('');
             
-            $exist = FALSE;
             $realm_info = NULL;
             
             foreach($this->auto->realms_info as $item)
@@ -15,12 +14,11 @@ class Status extends CI_Controller {
                 if($item['id'] != $realm)
                     continue;
                 
-                $exist = TRUE;
                 $realm_info = $item;
                 break;
             }
             
-            if( ! $exist)
+            if($realm_info == NULL)
                 redirect('');
             
             $this->load->model('status_model', 'status');
