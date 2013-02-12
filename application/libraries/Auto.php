@@ -40,13 +40,29 @@ class datauser {
 
 class Auto {
     
-    public $realms_info = NULL;
+    public $realms_info = NULL, $total_accounts = 0;
     
     public function __construct() 
     {	
         $this->set_realms_info();
+        $this->set_total_accounts();
         $CI =& get_instance();
         $CI->datauser = new datauser();
+    }
+    
+    private function set_total_accounts()
+    {
+        $CI =& get_instance();
+        
+        if ( ! $total_accounts = $CI->cache->get('total_accounts'))
+        {
+            $CI->auth = $CI->load->database('auth', TRUE);
+            $total_accounts = $CI->auth->count_all('account');
+            
+            $CI->cache->save('total_accounts', $total_accounts, 31536000);
+        }
+        
+        $this->total_accounts = $total_accounts;
     }
 
     private function set_realms_info()

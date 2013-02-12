@@ -30,7 +30,7 @@ class Status_model extends CI_Model
             $query = $this->characters->get('characters');
             
             $cont = array();
-            $zones = $this->Definitions->zones;
+            $zones = $this->config->item('zones');
 			
             if($query->num_rows()>'0')
             {

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>{title}</title>
+	<title>{site_title} - {title}</title>
 	<link rel="stylesheet" href="{base_url}application/views/thor/css/style.css" />
         {head_content}
 </head>

@@ -227,14 +227,21 @@ if ( ! function_exists('get_config'))
 		{
 			$file_path = APPPATH.'config/config.php';
 		}
-
+                
+                // Is the config file in the environment folder?
+		if ( ! defined('ENVIRONMENT') OR ! file_exists($file_path2 = APPPATH.'config/'.ENVIRONMENT.'/acocms.php'))
+		{
+			$file_path2 = APPPATH.'config/acocms.php';
+		}
+                
 		// Fetch the config file
-		if ( ! file_exists($file_path))
+		if ( ! file_exists($file_path) OR ! file_exists($file_path2))
 		{
 			exit('The configuration file does not exist.');
 		}
-
+                
 		require($file_path);
+                require($file_path2);
 
 		// Does the $config array exist in the file?
 		if ( ! isset($config) OR ! is_array($config))

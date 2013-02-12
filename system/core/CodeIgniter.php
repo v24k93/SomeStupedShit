@@ -323,9 +323,6 @@
  */
         $content = ''; // Store the main content
       
-        require APPPATH.'config/definitions.php';
-        
-        $CI->Definitions = new Definitions();
         $CI->title = '';
         $CI->query_executed = 0;
         //
@@ -374,8 +371,11 @@
             $data['content'] = $content;
             $data['title'] = $CI->title;
             $data['content'] =  (strtolower($class) != 'news') ? $CI->parser->parse('thor/template/box', $data, true) : $content;
-            $data['head_content'] = $CI->Definitions->head_content;
-            $data['realm_status'] = $CI->Definitions->realm_status;
+            $data['head_content'] = $CI->config->item('head_content');
+            $data['realm_status'] = $CI->config->item('realm_status');
+            $data['site_title'] = $CI->config->item('site_title');
+            $data['realmlist'] = $CI->config->item('realmlist');
+            $data['current_server_time'] = $CI->config->item('current_server_time');
             $data['base_url'] = base_url();
             $data['login_status'] = $CI->session->flashdata('login_status');
             $data['membership_login'] = ($CI->datauser->is_logged) ? array() : array(array());
@@ -386,6 +386,7 @@
             $data['user_ip'] = $_SERVER['REMOTE_ADDR'];
             $data['current_url'] = current_url();
             $data['realms'] = $CI->auto->realms_info;
+            $data['total_accounts'] = $CI->auto->total_accounts;
             require ('application/language/english/main_lang.php');
             foreach ($lang as $key => $val)
                 $data['lang_'.$key] = $val;

@@ -1,26 +1,61 @@
 <?php
+$CI =& get_instance();
 
 $config['head_content'] = '
     <meta charset="utf-8" />
-    <link rel="shortcut icon" href="'.base_url('content/img/favicon.ico').'" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="'.base_url('content/css/default_style.css').'" />
-    <script type="text/javascript" src="'.base_url('content/js/jquery.js').'"></script>
-    <script type="text/javascript" src="'.base_url('content/js/core.js').'"></script>
-    <script type="text/javascript" src="'.base_url('content/js/tooltip.js').'"></script>
-    <script type="text/javascript" src="'.base_url('content/js/main.js').'"></script>
-    <script type="text/javascript" src="'.base_url('content/js/wow.js').'"></script>
-    <script type="text/javascript" src="'.base_url('content/js/jquery.placeholder.min.js').'"></script>
-    <script type="text/javascript" src="'.base_url('content/js/openwow.js').'"></script>';
+    <link rel="shortcut icon" href="'.$CI->config->item('base_url').'content/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="'.$CI->config->item('base_url').'content/css/default_style.css" />
+    <script type="text/javascript" src="'.$CI->config->item('base_url').'content/js/jquery.js"></script>
+    <script type="text/javascript" src="'.$CI->config->item('base_url').'content/js/core.js"></script>
+    <script type="text/javascript" src="'.$CI->config->item('base_url').'content/js/tooltip.js"></script>
+    <script type="text/javascript" src="'.$CI->config->item('base_url').'content/js/main.js"></script>
+    <script type="text/javascript" src="'.$CI->config->item('base_url').'content/js/wow.js"></script>
+    <script type="text/javascript" src="'.$CI->config->item('base_url').'content/js/jquery.placeholder.min.js"></script>
+    <script type="text/javascript" src="'.$CI->config->item('base_url').'content/js/openwow.js"></script>';
 
 $config['realm_status'] = '
-    <span id="realmstatus_info"><center><img src="'.base_url('content/img/loader.gif').'" /></center></span>
+    <span id="realmstatus_info"><center><img src="'.$CI->config->item('base_url').'content/img/loader.gif" /></center></span>
     <script>
         window.onload = show_realms;
         function show_realms() {
-            showContent("'.base_url('index.php/ajax/show_realms_status').'", "realmstatus_info");
+            showContent("'.$CI->config->item('base_url').'index.php/ajax/show_realms_status", "realmstatus_info");
         }
     </script>
     <noscript>*<small>Please active your javascript to see realm status</small>.</noscript>';
+
+$config['current_server_time'] = '<span id="timer"></span>
+	<noscript>'.date("H:i").'</noscript>
+	<script>
+		var tick = false;
+		function startTime()
+		{
+			var today=new Date();
+			var h=today.getHours();
+			var m=today.getMinutes();
+			var s=today.getSeconds();
+			m=checkTime(m);
+			s=checkTime(s);
+			if(tick)
+			{
+				tick = false;
+				document.getElementById("timer").innerHTML=h+":"+m+":"+s;
+			}
+			else
+			{
+				tick = true;
+				document.getElementById("timer").innerHTML=h+" "+m+" "+s;
+			}
+			t=setTimeout(function(){startTime()},500);
+		}
+		
+		function checkTime(i)
+		{
+			if (i<10)
+				i="0" + i;
+			return i;
+		}
+		startTime();
+	</script>';
 
 $config['zones'] = array(
 				1 => 'Dun Morogh',
@@ -2288,21 +2323,5 @@ $config['zones'] = array(
 				4688 => 'claytonio test area',
 				4692 => 'Quel`Delar`s Rest'
 			);
-
-class Definitions {
-    
-    public function __construct() 
-    {
-        global $config;
-        
-        foreach($config as $key=>$value)
-        {
-            $this->$key = $value;
-        }
-    }
-    
-}
-
-
 
 ?>
