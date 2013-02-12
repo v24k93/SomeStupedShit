@@ -56,6 +56,7 @@ class CI_DB_mysql_driver extends CI_DB {
 
 	// whether SET NAMES must be used to set the character set
 	var $use_set_names;
+        public $query_executed = 0;
 	
 	/**
 	 * Non-persistent database connection
@@ -177,6 +178,8 @@ class CI_DB_mysql_driver extends CI_DB {
 	function _execute($sql)
 	{
 		$sql = $this->_prep_query($sql);
+                $CI =& get_instance();
+                $CI->query_executed += 1;
 		return @mysql_query($sql, $this->conn_id);
 	}
 

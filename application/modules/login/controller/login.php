@@ -56,6 +56,7 @@ class Login extends CI_Controller {
                 'posts'     =>  $data_user_cms['posts'],
                 'gender'    =>  $data_user_cms['gender'],
                 'rank'      =>  $data_user_cms['rank'],
+                'characters'=>  $this->login_model->get_characters($data_user['id']),
                 'gm_level'  =>  $this->login_model->get_user_gmlevel($data_user['id']),
                 'is_logged' =>  TRUE
                 );
@@ -74,7 +75,7 @@ class Login extends CI_Controller {
                 $this->input->set_cookie($cookie);      
             }
             
-            redirect('profile');
+            redirect($return_link);
         }
 }
 

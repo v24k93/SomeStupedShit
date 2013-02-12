@@ -327,6 +327,7 @@
         
         $CI->Definitions = new Definitions();
         $CI->title = '';
+        $CI->query_executed = 0;
         //
 	// Is there a "remap" function? If so, we call it instead
 	if (method_exists($CI, '_remap'))
@@ -372,14 +373,19 @@
         {
             $data['content'] = $content;
             $data['title'] = $CI->title;
-            $data['content'] = $CI->parser->parse('thor/template/box', $data, true);
+            $data['content'] =  (strtolower($class) != 'news') ? $CI->parser->parse('thor/template/box', $data, true) : $content;
             $data['head_content'] = $CI->Definitions->head_content;
             $data['realm_status'] = $CI->Definitions->realm_status;
             $data['base_url'] = base_url();
             $data['login_status'] = $CI->session->flashdata('login_status');
             $data['membership_login'] = ($CI->datauser->is_logged) ? array() : array(array());
             $data['membership'] = ($CI->datauser->is_logged) ? array((array)$CI->datauser) : array();
+            $data['logged'] = ($CI->datauser->is_logged) ? array(array()) : array();
+            $data['not_logged'] = ($CI->datauser->is_logged) ? array() : array(array());
+            $data['profile'] = ($CI->datauser->is_logged) ? array((array)$CI->datauser) : array();
             $data['user_ip'] = $_SERVER['REMOTE_ADDR'];
+            $data['current_url'] = current_url();
+            $data['realms'] = $CI->auto->realms_info;
             require ('application/language/english/main_lang.php');
             foreach ($lang as $key => $val)
                 $data['lang_'.$key] = $val;

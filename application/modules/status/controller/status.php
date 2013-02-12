@@ -21,8 +21,14 @@ class Status extends CI_Controller {
             if($realm_info == NULL)
                 redirect('');
             
-            $this->load->model('status_model', 'status');
-            $data['characters'] = $this->status_model->get_online_players($realm_info);
+            if ( ! $data = $this->cache->get('realms_status_'.$realm_info['id']))
+            {
+                $this->load->model('status_model', 'status');
+                $data = $this->status_model->get_online_players($realm_info);
+                $this->cache->save('realms_status_'.$realm_info['id'], $data, 60);
+            }
+            
+            $data['characters'] = $data;
             $this->title = 'Status';
             return $this->parser->parse('status', $data, true, 'status');
 	}

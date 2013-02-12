@@ -18,7 +18,8 @@ class datauser {
             $reputation = 0,
             $posts = 0,
             $gender = 0,
-            $rank = 0; 
+            $rank = 0,
+            $characters = array(); 
     
     public function __construct() 
     {

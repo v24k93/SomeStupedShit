@@ -3,8 +3,8 @@
 	* Templates Modify 					90%
 	* Autoloaded Classes					60%	(Will be added more features in progress)
 	* Ajax Realms Status Module (Cached)			100%
-	* Online Players Module					80%	(Not cached)
-	* News Module						20%	(Need queries and view)
+	* Online Players Module					90%	(Need multy realm links)
+	* News Module						40%	(Need views)
         * User Tools (Register, Login, UCP, Password Recovery)	40%     (Register & Login done)
 
  - Features

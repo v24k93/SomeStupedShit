@@ -22,6 +22,52 @@ class Login_model extends CI_Model
             return $query->row_array();
         }
         
+        function _get_characters($id, $realm)
+        {
+            $this->load->database();
+            $config['hostname'] = $this->db->hostname;
+            $config['username'] = $this->db->username;
+            $config['password'] = $this->db->password;
+            $config['database'] = $realm['char_db'];
+            $config['dbdriver'] = "mysql";
+            $config['dbprefix'] = "";
+            $config['pconnect'] = FALSE;
+            $config['db_debug'] = TRUE;
+            $config['cache_on'] = FALSE;
+            $config['cachedir'] = "";
+            $config['char_set'] = "utf8";
+            $config['dbcollat'] = "utf8_general_ci";
+
+            $this->characters = $this->load->database($config, TRUE); 
+            
+            $this->characters->select('guid, name, race, class, gender');
+            $this->characters->where('account', $id);
+            $query = $this->characters->get('characters');
+           
+            return $query->result_array();
+        }
+        
+        function get_characters($id)
+        {
+            if(count($this->auto->realms_info) == 0)
+                return array();
+            
+            $cont = array();
+            
+            $i = 0;
+            
+            foreach($this->auto->realms_info as $realm)
+            {
+                $i++;
+                
+                $cont[$i]['realm_name'] = $realm['name'];
+                $cont[$i]['realm_id'] = $realm['id'];
+                $cont[$i]['realm_characters'] = $this->_get_characters($id, $realm);
+            }
+            
+            return $cont;
+        }
+        
         function insert_cms_data($id, $username)
         {
             $this->cms = $this->load->database('cms', TRUE);  

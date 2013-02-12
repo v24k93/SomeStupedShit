@@ -10,21 +10,60 @@
     <div class="wrapper">
         <ul class="menu">
             <a href="{base_url}index.php"><li style="border-left:1px solid #002630;">{lang_home}</li></a>
-            <li>
-                <a href="{base_url}index.php/register"><span>{lang_account}</span></a>
-                <div style="left: 0;">
-                    <ul>
-                        <li><a href="{base_url}index.php/register"><span>{lang_register_account}</span></a></li>
-                        <li><a href="{base_url}index.php/forget"><span>{lang_forgot_password}</span></a></li>
-                    </ul>
-                </div>
-            </li>
+            {not_logged}
+                <li><a href="{base_url}index.php/register"><span>{lang_account}</span></a>
+                    <div style="left: 0;">
+                        <ul>
+                            <li><a href="{base_url}index.php/register"><span>{lang_register_account}</span></a></li>
+                            <li><a href="{base_url}index.php/forget"><span>{lang_forgot_password}</span></a></li>
+                        </ul>
+                    </div>
+                </li>
+            {/not_logged}
+            {profile}
+                <li><a href="{base_url}index.php/profile" class="parent"><span>{lang_profile}</span></a>
+                    <div style="left: 0;">
+                        <ul>
+                            <li><a href="{base_url}index.php/profile" class="parent"><span>{lang_characters}</span></a>
+                                <div style="left: 0;">
+                                    <ul>
+                                        {characters}
+                                            <li><a href="{link}" class="parent"><span>{realm_name}</span></a>
+                                                <div style="left: 0;">
+                                                    <ul>
+                                                        {realm_characters}
+                                                            <li><a href="{base_url}character/index/{guid}/{realm_id}"><span><img src="{base_url}content/img/icon/race/{race}-{gender}.gif" width="12" height="12" />&nbsp;&nbsp;{name}&nbsp;&nbsp;<img src="{base_url}content/img/icon/class/{class}.gif" width="12" height="12" /></span></a></li>
+                                                        {/realm_characters}
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        {/characters}
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a href="{base_url}index.php/profile" class="parent"><span>Change</span></a>
+                                <div style="left: 0;">
+                                    <ul>
+                                        <li><a href="{base_url}index.php/profile/change_password"><span>Password</span></a></li>
+                                        <li><a href="{base_url}index.php/profile/change_settings"><span>Settings</span></a></li>
+                                        <li><a href="{base_url}index.php/profile/change_expansion"><span>Expansion</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li><a href="{base_url}index.php/profile/donate"><span>{lang_donate}</span></a></li>
+                            <li><a href="{base_url}index.php/profile/donate_shop"><span>{lang_donate_shop}</span></a></li>
+                            <li><a href="{base_url}index.php/profile/vote_shop"><span>{lang_vote_shop}</span></a></li>
+                            <li><a href="{base_url}index.php/news/out"><span>{lang_logout}</span></a></li>
+                        </ul>
+                    </div>	
+                </li>
+            {/profile}
             <li>
                 <a href="#" class="parent"><span>{lang_status}</span></a>
                 <div style="left: 0;">
                     <ul>
                         {realms}
-                            <li><a href="{link}"><span>{name}</span></a></li>
+                            <li><a href="{base_url}index.php/status/index/{id}"><span>{name}</span></a></li>
                         {/realms}
                     </ul>
                 </div>
@@ -91,7 +130,7 @@
                 <div class="left-box-bg">
                     <div class="left-box-text">
                         <table id="login-table">
-                            <span style="float: left;">{lang_welcome}</span><span style="float: right;font-weight:bold;">{username} - <a href="{base_url}index.php/profile">{lang_profile}</a> - <a href="{base_url}index.php/home/out">{lang_logout}</a></span><span style="clear: both; display: block;"></span>
+                            <span style="float: left;">{lang_welcome}</span><span style="float: right;font-weight:bold;">{username} - <a href="{base_url}index.php/profile">{lang_profile}</a> - <a href="{base_url}index.php/news/out">{lang_logout}</a></span><span style="clear: both; display: block;"></span>
                             <span style="float: left;">{lang_account} ID</span><span style="float: right;font-weight:bold;">{id}</span><span style="clear: both; display: block;"></span>
                             <span style="float: left;">{lang_vote_points} (vp)</span><span style="float: right;font-weight:bold;">{vp}</span><span style="clear: both; display: block;"></span>
                             <span style="float: left;">{lang_donate_points} (dp)</span><span style="float: right;font-weight:bold;">{dp}</span><span style="clear: both; display: block;"></span>
@@ -150,15 +189,17 @@
 <div class="wrapper" id="footer">
     <div class="footer-copyright">
         &copy; 2012 All rights reserved to <a href="#">{site_title}</a><br />
-        All img of this World of Warcraft web design are the property of their respective owners.
+        All img of this World of Warcraft web design are the property of their respective owners.<br />
+        
     </div>
     
     <div class="footer-author">
         <!--This area should not be removed, this is a free template so all i ask for is to keep this area here not touched. -NicholasWalkerHD-->
-	Powered by: <a href="#">{core} - {elapsed_time}</a><br />
+	Powered by: <a href="#">{core}</a><br />
         Design by: <a href="http://thorgfx.com">Thor</a><br />
         Coded by: <a href="http://walkerhdd.com">NicholasWalkerHD</a>
     </div>
 </div>
+    <div style="width: 900px;text-align: center; margin: 0 auto;">Elapsed time: {elapsed_time} | Memory used: {memory_usage} | Query executed: {query_executed}</div>
 </body>
 </html>
