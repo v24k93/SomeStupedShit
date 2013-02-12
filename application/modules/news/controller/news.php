@@ -5,9 +5,21 @@ class News extends CI_Controller {
 	public function index()
 	{
                 $this->title = 'News';
-		$this->load->model('news_model', 'news');
-                $data['news'] = $this->news_model->get_news();
-		return $this->parser->parse('news', $data, true, 'news');
+                if ( ! $news = $this->cache->get('news'))
+                {
+                    $this->load->model('news_model', 'news');
+                    $news = $this->news_model->get_news();
+                    $this->cache->save('news', $news, 600);
+                }
+		
+                $cont = '';
+		foreach($news as $new)
+                {
+                    $data['title'] = $new['news_title'];
+                    $data['content'] = $new['news'];
+                    $cont .= $this->parser->parse('thor/template/box', $data, true);
+                }
+                return $cont;
 	}
         
         function out()
