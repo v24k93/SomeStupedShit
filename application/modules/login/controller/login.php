@@ -45,7 +45,7 @@ class Login extends CI_Controller {
                 'username'  =>  $data_user['username'],
                 'expansion' =>  $data_user['expansion'],
                 'email'     =>  $data_user['email'],
-                'join_date' =>  $data_user['joindate'],
+                'joindate'  =>  $data_user['joindate'],
                 'last_ip'   =>  $data_user['last_ip'],
                 'last_login'=>  $data_user['last_login'],
                 'nickname'  =>  $data_user_cms['username'],
@@ -65,7 +65,7 @@ class Login extends CI_Controller {
             
             if($this->input->post('login_remember_me') == '1')
             {
-                $remember_me_token = strtoupper($username).'-'.$data_user['sha_password'];
+                $remember_me_token = strtoupper($username).'-'.$data_user['sha_pass_hash'];
                 $cookie = array(
                     'name'   => 'remember_me_token',
                     'value'  => $remember_me_token,

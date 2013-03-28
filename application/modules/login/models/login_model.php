@@ -22,6 +22,30 @@ class Login_model extends CI_Model
             return $query->row_array();
         }
         
+        function get_account_by_id($id)
+        {
+            $this->auth = $this->load->database('auth', TRUE); 
+            $this->auth->where('id', $id);
+            $query = $this->auth->get('account', '1');
+
+            if($query->num_rows() != 1)
+                return FALSE;
+            
+            return $query->row_array();
+        }
+        
+        function get_account_cms_by_id($id)
+        {
+            $this->cms = $this->load->database('cms', TRUE); 
+            $this->cms->where('id', $id);
+            $query = $this->cms->get('account_addition', '1');
+
+            if($query->num_rows() != 1)
+                return FALSE;
+            
+            return $query->row_array();
+        }
+        
         function _get_characters($id, $realm)
         {
             $this->load->database();
@@ -40,7 +64,7 @@ class Login_model extends CI_Model
 
             $this->characters = $this->load->database($config, TRUE); 
             
-            $this->characters->select('guid, name, race, class, gender');
+            $this->characters->select('guid, name, race, class, gender, level');
             $this->characters->where('account', $id);
             $query = $this->characters->get('characters');
            

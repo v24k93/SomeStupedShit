@@ -365,6 +365,7 @@ class CI_Output {
 
 			$output = str_replace('{elapsed_time}', $elapsed, $output);
 			$output = str_replace('{memory_usage}', $memory, $output);
+                        $output = str_replace('{core}', 'Ac0', $output);
                         $output = str_replace('{query_executed}', $CI->query_executed, $output);
 		}
 

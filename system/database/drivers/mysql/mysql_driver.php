@@ -314,7 +314,7 @@ class CI_DB_mysql_driver extends CI_DB {
 	   		return $str;
 	   	}
 
-		if (function_exists('mysql_real_escape_string') AND is_resource($this->conn_id))
+		if (function_exists('mysql_real_escape_string') && is_resource($this->conn_id))
 		{
 			$str = mysql_real_escape_string($str, $this->conn_id);
 		}

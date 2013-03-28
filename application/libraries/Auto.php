@@ -7,7 +7,7 @@ class datauser {
             $gm_level = 0, 
             $is_logged = FALSE, 
             $email = NULL, 
-            $join_date = NULL,
+            $joindate = NULL,
             $last_ip = '127.0.0.1',
             $last_login = '0000-00-00 00:00:00',
             $expansion = 0,
@@ -19,21 +19,60 @@ class datauser {
             $posts = 0,
             $gender = 0,
             $rank = 0,
-            $characters = array(); 
+            $characters = array(),
+            $ini = FALSE; 
     
-    public function __construct() 
+    public function __construct($id = '') 
     {
-        $this->init();        
+        if( ! $this->init($id))
+            return FALSE;
     }
     
-    public function init()
+    public function init($id)
     {
         $CI =& get_instance();
-        if( ! $data_user = $CI->session->userdata('data_user'))
-            return;
+        
+        if(is_int((int)$id) && $id > 0)
+        {
+            $CI->load->model('login_model', 'login');
+            if( ! $data_user = $CI->login_model->get_account_by_id($id))
+                    return FALSE;
+            if( ! $data_user_cms = $CI->login_model->get_account_cms_by_id($id))
+                    return FALSE;
+            
+            $data_user = array( 
+                'id'        =>  $data_user['id'],
+                'username'  =>  $data_user['username'],
+                'expansion' =>  $data_user['expansion'],
+                'email'     =>  $data_user['email'],
+                'joindate'  =>  $data_user['joindate'],
+                'last_ip'   =>  $data_user['last_ip'],
+                'last_login'=>  $data_user['last_login'],
+                'nickname'  =>  $data_user_cms['username'],
+                'vp'        =>  $data_user_cms['vp'],
+                'dp'        =>  $data_user_cms['dp'],
+                'avatar'    =>  $data_user_cms['avatar'],
+                'reputation'=>  $data_user_cms['reputation'],
+                'posts'     =>  $data_user_cms['posts'],
+                'gender'    =>  $data_user_cms['gender'],
+                'rank'      =>  $data_user_cms['rank'],
+                'characters'=>  $CI->login_model->get_characters($id),
+                'gm_level'  =>  $CI->login_model->get_user_gmlevel($id),
+                'ini'       =>  TRUE
+            );
+            
+        }
+        elseif($CI->session->userdata('data_user'))
+        {
+            $data_user = $CI->session->userdata('data_user');
+        }
+        else
+            return FALSE;
         
         foreach($data_user as $key=>$val)
             $this->$key = $val;
+        
+        return TRUE;
     }
     
 }
