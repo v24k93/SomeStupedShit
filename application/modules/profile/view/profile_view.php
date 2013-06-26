@@ -2,14 +2,14 @@
     <table class="profile_holder" >
         <tr>
             <td class="avatar_holder" rowspan="8">
-                <a href="http://78.90.51.149/cms/index.php/profile/change_avatar">
-                    <div class="avatar_content" onmouseout="Tooltip.hide();" onmouseover="Tooltip.show(this, 'Change Avatar');" style="cursor: pointer; background-image: url('http://78.90.51.149/cms/content/img/avatars/default-0.jpg');"></div>
+                <a href="{base_url}index.php/profile/change_avatar">
+                    <div class="avatar_content" onmouseout="Tooltip.hide();" onmouseover="Tooltip.show(this, 'Change Avatar');" style="cursor: pointer; background-image: url('{base_url}content/img/avatars/default-0.jpg');"></div>
                 </a>
             </td>
             <td><span class="member" title="Nickname">Nickname</span></td>
             <td>{nickname}</td>
             <td style="width: 20px;">
-                <a href="http://78.90.51.149/cms/index.php/profile/change_settings">
+                <a href="{base_url}index.php/profile/change_settings">
                     <div class="edit" onmouseout="Tooltip.hide();" onmouseover="Tooltip.show(this, 'Change Nickname');"></div>
                 </a>
             </td>
@@ -21,7 +21,7 @@
             <td><span class="location" title="Location">Location</span></td>
             <td></td>
             <td>
-                <a href="http://78.90.51.149/cms/index.php/profile/change_settings">
+                <a href="{base_url}index.php/profile/change_settings">
                     <div class="edit" onmouseout="Tooltip.hide();" onmouseover="Tooltip.show(this, 'Edit Location');"></div>
                 </a>
             </td>
@@ -39,7 +39,7 @@
             <td><span class="gender_0" title="Gander">Gender</span></td>
             <td>{gender}</td>
             <td>
-                <a href="http://78.90.51.149/cms/index.php/profile/change_settings">
+                <a href="{base_url}index.php/profile/change_settings">
                     <div class="edit" onmouseout="Tooltip.hide();" onmouseover="Tooltip.show(this, 'Change Gender');"></div>
                 </a>
             </td>
@@ -50,7 +50,7 @@
             <td><span class="expansion" title="Expansion">Expansion</span></td>
             <td><font style="color: blue">{expansion}</font></td>
             <td>
-                <a href="http://78.90.51.149/cms/index.php/profile/change_expansion">
+                <a href="{base_url}index.php/profile/change_expansion">
                     <div class="change" onmouseout="Tooltip.hide();" onmouseover="Tooltip.show(this, 'Change Expansion');"></div>
                 </a>
             </td>
@@ -77,22 +77,22 @@
     <table class="profile_holder" style="text-align: center;">
         <tr>
             <td>
-                <a href="http://78.90.51.149/cms/index.php/profile/change_password" class="cool_button">
+                <a href="{base_url}index.php/profile/change_password" class="cool_button">
                     <span class="change_btn" title="Change Password">Change Password</span>
                 </a>
             </td>
             <td>
-                <a href="http://78.90.51.149/cms/index.php/profile/vote_shop" class="cool_button">
+                <a href="{base_url}index.php/profile/vote_shop" class="cool_button">
                     <span class="vote_points" title="Vote Shop">Vote Shop</span>
                 </a>
             </td>
             <td>
-                <a href="http://78.90.51.149/cms/index.php/profile/donate_shop" class="cool_button">
+                <a href="{base_url}index.php/profile/donate_shop" class="cool_button">
                     <span class="donate_points" title="Donate Shop">Donate Shop</span>
                 </a>
             </td>
             <td>
-                <a href="http://78.90.51.149/cms/index.php/profile/donate" class="cool_button">
+                <a href="{base_url}index.php/profile/donate" class="cool_button">
                     <span class="donate_points" title="Donate">Donate</span>
                 </a>
             </td>

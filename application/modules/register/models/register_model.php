@@ -37,7 +37,7 @@ class Register_model extends CI_Model
                    'expansion' => $this->config->item('expansion')
                 );
 
-            $query = $this->auth->insert('account', $data);
+            $this->auth->insert('account', $data);
 
             return $this->auth->affected_rows();
         }
@@ -62,7 +62,7 @@ class Register_model extends CI_Model
                    'security_answer' => $security_answer
                 );
 
-            $query = $this->cms->insert('account_addition', $data);
+            $this->cms->insert('account_addition', $data);
 
             return $this->cms->affected_rows();
         }

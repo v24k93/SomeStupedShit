@@ -58,7 +58,8 @@ class Login extends CI_Controller {
                 'rank'      =>  $data_user_cms['rank'],
                 'characters'=>  $this->login_model->get_characters($data_user['id']),
                 'gm_level'  =>  $this->login_model->get_user_gmlevel($data_user['id']),
-                'is_logged' =>  TRUE
+                'is_logged' =>  TRUE,
+                'ini'       =>  TRUE,
                 );
             
             $this->session->set_userdata(array('data_user' => $newdata));

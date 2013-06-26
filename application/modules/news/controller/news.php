@@ -4,6 +4,7 @@ class News extends CI_Controller {
 
 	public function index()
 	{
+                $this->load->helper('smiley');
                 $this->title = 'News';
                 if ( ! $news = $this->cache->get('news'))
                 {
@@ -16,7 +17,7 @@ class News extends CI_Controller {
 		foreach($news as $new)
                 {
                     $data['title'] = $new['news_title'];
-                    $data['content'] = $new['news'];
+                    $data['content'] = parse_smileys($new['news'], base_url('content/img/smileys/'));
                     $cont .= $this->parser->parse('thor/template/box', $data, true);
                 }
                 return $cont;

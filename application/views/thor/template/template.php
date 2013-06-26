@@ -200,6 +200,6 @@
         Coded by: <a href="http://walkerhdd.com">NicholasWalkerHD</a>
     </div>
 </div>
-    <div style="width: 900px;text-align: center; margin: 0 auto;">Elapsed time: {elapsed_time} | Memory used: {memory_usage} | Query executed: {query_executed}</div>
+    <div style="width: 900px;text-align: center; margin: 0 auto;">[DEBUG] Elapsed time: {elapsed_time} | Memory used: {memory_usage} | Query executed: {query_executed} [/DEBUG]</div>
 </body>
 </html>

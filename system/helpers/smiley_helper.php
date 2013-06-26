@@ -210,6 +210,44 @@ if ( ! function_exists('parse_smileys'))
 		{
 			$str = str_replace($key, "<img src=\"".$image_url.$smileys[$key][0]."\" width=\"".$smileys[$key][1]."\" height=\"".$smileys[$key][2]."\" alt=\"".$smileys[$key][3]."\" style=\"border:0;\" />", $str);
 		}
+                
+                $token = array(
+                        "'\[b\](.*?)\[/b\]'is",  
+                        '/\[i\](.*?)\[\/i\]/is',    
+                        '/\[u\](.*?)\[\/u\]/is',      
+                        '/\[url\=(.*?)\](.*?)\[\/url\]/is',      
+                        '/\[url\](.*?)\[\/url\]/is',  
+                        '/\[mail\=(.*?)\](.*?)\[\/mail\]/is',   
+                        '/\[mail\](.*?)\[\/mail\]/is',    
+                        '/\[font\=(.*?)\](.*?)\[\/font\]/is',  
+                        '/\[size\=(.*?)\](.*?)\[\/size\]/is',    
+                        '/\[color\=(.*?)\](.*?)\[\/color\]/is',  
+                );
+
+		$tokenized = array(
+                        '<strong>$1</strong>',
+                        '<em>$1</em>',
+                        '<u>$1</u>',
+                        '<a href="http://$1" target="BLANK">$2</a>',
+                        '<a href="http://$1" target="BLANK">$1</a>',
+                        '<a href="mailto:$1">$2</a>',
+                        '<a href="mailto:$1">$1</a>',
+                        '<span style="font-family: $1;">$2</span>',
+                        '<span style="font-size: $1;">$2</span>',
+                        '<span style="color: $1;">$2</span>',
+                );
+					
+		// Do simple BBCode's
+		$str = preg_replace ($token, $tokenized, $str);
+		
+		$token = array(
+                        '\n\r',
+                        '\r\n',
+                        '\n', 
+                        '\r'
+		);
+                
+                $str = str_replace($token, "<br />", $str);
 
 		return $str;
 	}

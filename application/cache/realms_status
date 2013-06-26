@@ -1,1 +1,1 @@
-a:3:{s:4:"time";i:1364485148;s:3:"ttl";i:60;s:4:"data";a:2:{s:8:"base_url";s:25:"http://127.0.0.1/aco_cms/";s:6:"realms";a:1:{i:1;a:3:{s:8:"realm_id";s:1:"1";s:10:"realm_name";s:7:"Trinity";s:20:"realm_online_players";s:7:"Offline";}}}}
+a:3:{s:4:"time";i:1372262466;s:3:"ttl";i:60;s:4:"data";a:2:{s:8:"base_url";s:25:"http://127.0.0.1/aco_cms/";s:6:"realms";a:1:{i:1;a:3:{s:8:"realm_id";s:1:"1";s:10:"realm_name";s:7:"Trinity";s:20:"realm_online_players";s:7:"Offline";}}}}

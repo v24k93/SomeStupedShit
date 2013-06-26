@@ -75,6 +75,18 @@ class datauser {
         return TRUE;
     }
     
+    public function changeData($data, $new)
+    {
+        if( ! $this->ini)
+            return FALSE;
+        
+        $CI =& get_instance();
+        $newdata = $CI->session->userdata('data_user');
+        
+        $newdata[$data] = $new;
+        $CI->session->set_userdata(array('data_user' => $newdata));
+    }
+    
 }
 
 class Auto {
