@@ -19,7 +19,7 @@
         </tr>
         <tr>
             <td><span class="location" title="Location">Location</span></td>
-            <td></td>
+            <td>{location}</td>
             <td>
                 <a href="{base_url}index.php/profile/change_settings">
                     <div class="edit" onmouseout="Tooltip.hide();" onmouseover="Tooltip.show(this, 'Edit Location');"></div>

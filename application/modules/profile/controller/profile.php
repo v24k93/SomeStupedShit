@@ -14,15 +14,20 @@ class Profile extends CI_Controller {
         }
         elseif(is_int((int)$id) && $id > 0)
         {
-            $data_user = new datauser($id);
-            
-            if( ! $data_user->ini)
-                redirect('');
-            
-            if( $data_user->id == $id)
-                $own = TRUE;
-            
-            $data_user = array($data_user);
+            if($this->datauser->id == $id)
+                $data_user = array($this->datauser);
+            else
+            {
+                $data_user = new datauser($id);
+
+                if( ! $data_user->ini)
+                    redirect('');
+
+                if( $data_user->id == $id)
+                    $own = TRUE;
+
+                $data_user = array($data_user);
+            }
         }
         else
             redirect('');
@@ -70,9 +75,13 @@ class Profile extends CI_Controller {
             $this->load->model('profile_model', 'profile');
             if($this->profile_model->set_new_settings($this->datauser->id, $this->input->post('characters'), $this->input->post('location'), $this->input->post('gender')) == 1)
             {
-                $this->datauser->changeData('nickname', $this->input->post('characters'));
-                $this->datauser->changeData('gender', $this->input->post('gender'));
-                $this->datauser->changeData('location', $this->input->post('location'));
+                $new_data = array(
+                    'nickname' => $this->input->post('characters'),
+                    'gender' => $this->input->post('gender'),
+                    'location' => $this->input->post('location')
+                );
+                
+                $this->datauser->changeData($new_data);
                 $this->session->set_flashdata('change_status', "<div class='success'><span class='ico_accept'>Successfuly changed.</span></div>");
             }
         }

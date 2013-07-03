@@ -12,6 +12,7 @@ class datauser {
             $last_login = '0000-00-00 00:00:00',
             $expansion = 0,
             $nickname = NULL,
+            $location = NULL,
             $vp = 0,
             $dp = 0,
             $avatar = 'default-0.jpg',
@@ -49,6 +50,7 @@ class datauser {
                 'last_ip'   =>  $data_user['last_ip'],
                 'last_login'=>  $data_user['last_login'],
                 'nickname'  =>  $data_user_cms['username'],
+                'location'  =>  $data_user_cms['location'],
                 'vp'        =>  $data_user_cms['vp'],
                 'dp'        =>  $data_user_cms['dp'],
                 'avatar'    =>  $data_user_cms['avatar'],
@@ -75,15 +77,24 @@ class datauser {
         return TRUE;
     }
     
-    public function changeData($data, $new)
+    public function changeData($data, $new = NULL)
     {
-        if( ! $this->ini)
+        if( ! $this->ini || (!is_array($data) && $new == NULL))
             return FALSE;
         
         $CI =& get_instance();
         $newdata = $CI->session->userdata('data_user');
         
-        $newdata[$data] = $new;
+        if(is_array($data))
+        {
+            foreach($data as $key=>$val)
+                $newdata[$key] = $val;
+        }
+        else
+        {
+            $newdata[$data] = $new;
+        }
+        
         $CI->session->set_userdata(array('data_user' => $newdata));
     }
     
