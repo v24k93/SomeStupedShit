@@ -788,7 +788,12 @@ class CI_Loader {
 			$_ci_file = ($_ci_ext == '') ? $_ci_view.'.php' : $_ci_view;
                         if($method != '')
                         {
-                            if (file_exists('application/modules/'.$method.'/view/'.$_ci_file))
+                            if (file_exists('application/views/'.config_item('style').'/pages/'.$_ci_file))
+                            {
+                                $_ci_path = 'application/views/'.config_item('style').'/pages/'.$_ci_file;
+				$file_exists = TRUE;
+                            }
+                            elseif (file_exists('application/modules/'.$method.'/view/'.$_ci_file))
                             {
 				$_ci_path = 'application/modules/'.$method.'/view/'.$_ci_file;
 				$file_exists = TRUE;

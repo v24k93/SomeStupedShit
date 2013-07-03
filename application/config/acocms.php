@@ -16,10 +16,9 @@
 |
 */
 
-$config['base_url']	= 'http://127.0.0.1/aco_cms/';
-
-$config['site_title'] = 'Ac0\'s CMS';
-$config['realmlist'] = 'logon.acocms.com';
-$config['expansion']    = 2;
-
+$config['base_url']     =   'http://127.0.0.1/aco_cms/';
+$config['site_title']   =   'Ac0\'s CMS';
+$config['realmlist']    =   'logon.acocms.com';
+$config['style']        =   'thor';
+$config['expansion']    =   2;
 ?>

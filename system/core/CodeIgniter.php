@@ -370,7 +370,7 @@
         {
             $data['content'] = $content;
             $data['title'] = $CI->title;
-            $data['content'] =  (strtolower($class) != 'news') ? $CI->parser->parse('thor/template/box', $data, true) : $content;
+            $data['content'] =  (strtolower($class) != 'news') ? $CI->parser->parse($CI->config->item('style').'/template/box', $data, true) : $content;
             $data['head_content'] = $CI->config->item('head_content');
             $data['realm_status'] = $CI->config->item('realm_status');
             $data['site_title'] = $CI->config->item('site_title');
@@ -391,7 +391,7 @@
             foreach ($lang as $key => $val)
                 $data['lang_'.$key] = $val;
 
-            $CI->parser->parse('thor/template/template', $data);
+            $CI->parser->parse($CI->config->item('style').'/template/template', $data);
         }
 
 	// Mark a benchmark end point
